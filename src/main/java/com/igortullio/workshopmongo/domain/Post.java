@@ -1,5 +1,6 @@
 package com.igortullio.workshopmongo.domain;
 
+import com.igortullio.workshopmongo.domain.dto.AuthorDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -16,5 +17,5 @@ public class Post {
     private Date date;
     private String title;
     private String body;
-    private User author;
+    private AuthorDTO author;
 }
