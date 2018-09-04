@@ -5,6 +5,7 @@ import com.igortullio.workshopmongo.domain.dto.UserDTO;
 import com.igortullio.workshopmongo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,11 @@ public class UserResource {
         List<User> users = userService.findAll();
         List<UserDTO> usersDTO = users.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
         return ResponseEntity.ok().body(usersDTO);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<UserDTO> findById(@PathVariable String id) {
+        return ResponseEntity.ok().body(new UserDTO(userService.findById(id)));
     }
 
 }
